@@ -1,7 +1,7 @@
 AutoXiaomi
 ==========
 
-APIs for buying Xiaomi Product
+APIs for buying Xiaomi-Tw Product
 
 
 How to use ?
@@ -51,13 +51,14 @@ How to use ?
       xiaomi.buy_method1( itemid )
       
     
-      itemid can be found at Xiaomi's website
+      
       
 
-Notice
+P.S
 -------
   
-      buy_method1 function can only apply on the order without captcha
-      
+  buy_method1 function can only apply on the order without captcha.
+  
+  itemid can be found at Xiaomi's website.
       
       

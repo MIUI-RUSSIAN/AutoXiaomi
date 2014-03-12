@@ -1,4 +1,7 @@
-﻿import os,sys
+# -*- coding: utf-8 -*-
+#!/usr/bin/python
+
+import os,sys
 import http
 import re
 import ast
@@ -13,7 +16,8 @@ class Xiaomi:
     def login(self ,email ,password):
 
         self.uid = None
-
+        self.email = email
+        self.password = password
         login_page = self.req.get('https://account.xiaomi.com/pass/serviceLogin?callback=http%3A%2F%2Fwww.xiaomi.tw%2Flogin%2Fcallback%3Ffollowup%3Dhttp%253A%252F%252Fwww.xiaomi.tw%26sign%3DZDM4ODcwNWFiYzMzZjk3MWZjMWRmZmEyNmVkODE3MmE0NDZmMWY2ZQ%2C%2C&sid=xiaomitw&_locale=zh_TW')
 
         callback = re.search('callback = encodeURIComponent\("(.*)"\)',login_page).group(1)
@@ -53,11 +57,13 @@ class Xiaomi:
         return None
 
     def buy_method1(self, itemid):
-        
+        itemid = str(itemid)
         if ( self.uid != None ):
-            self.req.get('http://www.xiaomi.tw/cart/add/' + itemid + '-0-2')
+            add_page = self.req.get('http://www.xiaomi.tw/cart/add/' + itemid + '-0-2')
             try:
-                
+                if ( re.search('商品沒有庫存了' , add_page) != None):
+                    self.err = 'Out of stock.'
+                    return False
                 if ( os.path.isfile('buy.config')):
                     
                     config = open('buy.config','r').read().decode('utf-8-sig')
@@ -69,7 +75,7 @@ class Xiaomi:
                     return order_id
 
             except:
-                print "Error" , sys.exc_info()[0]
+                self.err = 'Exception occuered'
                 return False
             
     

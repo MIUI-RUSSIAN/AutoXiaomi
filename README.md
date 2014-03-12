@@ -16,7 +16,7 @@ How to use ?
 
 2)
   
-  edit __main__.py
+  edit \_\_main\_\_.py
   
   add your account & pwd
   

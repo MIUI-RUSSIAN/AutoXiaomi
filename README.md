@@ -30,7 +30,7 @@ P.S
   
   itemid can be found at Xiaomi's website.
       
-Consignee code for buy.config:
+City code for buy.config:
 -------------------------------
 
         3387-台北市
